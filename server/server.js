@@ -75,12 +75,19 @@ app.post('/api/notes/:id/summarize', async (req, res) => {
 
     const prompt = `You are an AI writing assistant.
 
-Task: Summarize the following note content in exactly one simple, clear sentence.
+Task: Read the following note content and return:
+- Exactly 3 simple bullet‑point summaries
+- Exactly 1 quiz question based on the note
 
 Requirements:
-- Use plain language.
-- Do not add extra details.
-- Do not exceed one sentence. \n\nNote Content:\n${note.content}`;
+- Use plain, clear language
+- Keep each bullet point short
+- Do not add extra details
+- Output only the 3 bullet points and 1 quiz question
+
+Note Content:
+${note.content}
+\n\nNote Content:\n${note.content}`;
 
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: prompt }],

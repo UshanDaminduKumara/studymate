@@ -54,9 +54,11 @@ Create a new file named `.env` and add:
 PORT=5000
 MONGO_URI=your_mongodb_connection_string_here
 DEEPSEEK_API_KEY=your_deepseek_api_key_here
-
+```
 
 ## Screenshots
 * App UI
 ![alt text](1.png)
-* MCP Tool Call
+![alt text](2.png)
+![alt text](3.png)
+![alt text](4.png)
