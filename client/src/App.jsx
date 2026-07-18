@@ -32,6 +32,13 @@ export default function App() {
     }
   };
 
+  // NEW: Handles updating the state when a note gets a new summary
+  const handleNoteUpdated = (updatedNote) => {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) => (note._id === updatedNote._id ? updatedNote : note))
+    );
+  };
+
   const filteredNotes = notes.filter(note => 
     note.title.toLowerCase().includes(search.toLowerCase()) || 
     note.subject.toLowerCase().includes(search.toLowerCase())
@@ -59,7 +66,12 @@ export default function App() {
         </div>
       ) : (
         filteredNotes.map(note => (
-          <NoteCard key={note._id} note={note} onDelete={handleDelete} />
+          <NoteCard 
+            key={note._id} 
+            note={note} 
+            onDelete={handleDelete} 
+            onNoteUpdated={handleNoteUpdated} // NEW: Pass the handler down
+          />
         ))
       )}
     </div>
